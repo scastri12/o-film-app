@@ -12,7 +12,7 @@ export class ListComponent implements OnInit {
   constructor(private readonly filmService: FilmService) { }
 
   ngOnInit(): void {
-    this.filmService.getMovies().subscribe(
+    this.filmService.getFilms().subscribe(
       (response) => {
         this.filmList = response;
         console.log("response: ", response);
