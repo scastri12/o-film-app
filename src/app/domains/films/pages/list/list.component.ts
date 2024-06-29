@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FilmService } from './../../services/film.service'
 
 @Component({
   selector: 'app-list',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  filmList: any;
+  constructor(private readonly filmService: FilmService) { }
 
   ngOnInit(): void {
+    this.filmService.getMovies().subscribe(
+      (response) => {
+        this.filmList = response;
+        console.log("response: ", response);
+      },
+      (error) => {
+        console.error('Error fetching movies', error);
+      }
+    );
   }
 
 }
