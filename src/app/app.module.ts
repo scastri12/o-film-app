@@ -6,13 +6,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FilmComponent } from './domains/films/components/film/film.component';
 import { ListComponent } from './domains/films/pages/list/list.component';
-import { FilmService } from './domains/films/services/film.service'
+import { FilmService } from './domains/films/services/film.service';
+import { HeaderComponent } from './domains/shared/components/header/header.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     FilmComponent,
-    ListComponent
+    ListComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
