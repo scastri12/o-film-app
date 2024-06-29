@@ -4,7 +4,7 @@
     <app-film
       *ngFor="let film of filmList"
       [film]="film"
-      (addToCart)="fromChild($event)"
+      (goDetail)="getId($event)"
     ></app-film>
   </div>
 </div>

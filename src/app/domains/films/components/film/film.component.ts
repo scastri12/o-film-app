@@ -8,7 +8,7 @@ import { Film } from './../../../shared/models/film.model';
 export class FilmComponent implements OnInit {
   
   @Input() film!: Film;
-  @Output() addToCart = new EventEmitter();
+  @Output() goDetail = new EventEmitter();
 
   imagen: string = "https://image.tmdb.org/t/p/original/";
 
@@ -19,9 +19,9 @@ export class FilmComponent implements OnInit {
     this.imagen += this.film.poster_path;
   }
 
-  addToCartHandler() {
+  goDetailHandler() {
     console.log('click form child');
-    this.addToCart.emit('Hola este es un msg desde el hijo ' + this.film.title);
+    this.goDetail.emit(this.film.id);
   }
 
 }

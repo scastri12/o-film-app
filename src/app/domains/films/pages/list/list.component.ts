@@ -25,10 +25,9 @@ export class ListComponent implements OnInit {
     );
   }
 
-  fromChild(event: string) {
-    console.log('estamos en el padre');
+  getId(event: string) {
+    console.log('estamos en el padre id: ', event);
     console.log(event);
-
   }
 
 }
