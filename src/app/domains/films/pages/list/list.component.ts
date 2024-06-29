@@ -14,20 +14,24 @@ export class ListComponent implements OnInit {
   constructor(private readonly filmService: FilmService) { }
 
   ngOnInit(): void {
+    this.getFilmList();
+  }
+
+  getId(event: string) {
+    console.log('estamos en el padre id: ', event);
+    console.log(event);
+  }
+
+  getFilmList() {
     this.filmService.getFilms().subscribe(
       (response) => {
         this.filmList = response.results;
         console.log("response: ", this.filmList);
       },
       (error) => {
-        console.error('Error fetching movies', error);
+        console.error('Error fetching films', error);
       }
     );
-  }
-
-  getId(event: string) {
-    console.log('estamos en el padre id: ', event);
-    console.log(event);
   }
   
 
