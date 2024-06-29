@@ -1,0 +1,10 @@
+<div class="container px-20">
+  <app-header></app-header>
+  <div class="grid grid-cols-4 gap-8 mt-5">
+    <app-film
+      *ngFor="let film of filmList"
+      [film]="film"
+      (addToCart)="fromChild($event)"
+    ></app-film>
+  </div>
+</div>

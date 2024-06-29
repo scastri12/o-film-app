@@ -1,0 +1,12 @@
+{
+    "/api": {
+      "target": "https://api.themoviedb.org/3",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug",
+      "headers": {
+        "api_key": "f63cfa4150be2e71d9ef0336c0d19212"  
+      }
+    }
+  }
+  
