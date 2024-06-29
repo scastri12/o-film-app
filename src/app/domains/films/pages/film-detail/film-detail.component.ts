@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { Film } from './../../../shared/models/film.model'
 import { DetailFilmService } from './../../services/detail-film.service';
 
 @Component({
@@ -10,8 +11,8 @@ import { DetailFilmService } from './../../services/detail-film.service';
 })
 export class FilmDetailComponent implements OnInit {
   id?: number;
-  film!: {};
-
+  film!: Film;
+  imagen: string = "https://image.tmdb.org/t/p/original";
   constructor(
     private readonly detailFilmService: DetailFilmService,
     private route: ActivatedRoute
@@ -21,6 +22,7 @@ export class FilmDetailComponent implements OnInit {
     this.getId();
     if (this.id) {
       this.getFilm(this.id);
+      
     }
   }
 
@@ -29,17 +31,18 @@ export class FilmDetailComponent implements OnInit {
       this.id = params['id'];
     });
   }
+
   getFilm(id: number) {
     const idString = id.toString();
     this.detailFilmService.getDetail(idString).subscribe(
       (response) => {
         this.film = response;
-        console.log("response: ", this.film);
+        console.log(this.film);
+        this.imagen += this.film?.poster_path;
       },
       (error) => {
         console.error('Error fetching films', error);
       }
     );
-
   }
 }
