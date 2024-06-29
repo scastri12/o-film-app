@@ -1,0 +1,48 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { Film } from './../../../shared/models/film.model'
+import { DetailFilmService } from './../../services/detail-film.service';
+
+@Component({
+  selector: 'app-film-detail',
+  templateUrl: './film-detail.component.html',
+  styleUrls: ['./film-detail.component.css'],
+})
+export class FilmDetailComponent implements OnInit {
+  id?: number;
+  film!: Film;
+  imagen: string = "https://image.tmdb.org/t/p/original";
+  constructor(
+    private readonly detailFilmService: DetailFilmService,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.getId();
+    if (this.id) {
+      this.getFilm(this.id);
+      
+    }
+  }
+
+  getId() {
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+    });
+  }
+
+  getFilm(id: number) {
+    const idString = id.toString();
+    this.detailFilmService.getDetail(idString).subscribe(
+      (response) => {
+        this.film = response;
+        console.log(this.film);
+        this.imagen += this.film?.poster_path;
+      },
+      (error) => {
+        console.error('Error fetching films', error);
+      }
+    );
+  }
+}
