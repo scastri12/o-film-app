@@ -55,4 +55,15 @@ export class FilmDetailComponent implements OnInit {
   closeEditModal() {
     this.viewModal = false;
   }
+
+  getFilmEdited(event: any) {
+    console.log("este es el evento: ", event);
+    this.updateFilm(event);
+  }
+
+  updateFilm(film: any) {
+    this.film.title = film.title;
+    this.film.vote_average = Number(film.rating);
+    this.film.overview = film.overview;
+  }
 }

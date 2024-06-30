@@ -5,16 +5,16 @@ import { Film } from './../../../shared/models/film.model';
 @Component({
   selector: 'app-edit-modal',
   templateUrl: './edit-modal.component.html',
-  styleUrls: ['./edit-modal.component.css']
+  styleUrls: ['./edit-modal.component.css'],
 })
 export class EditModalComponent implements OnInit {
   @Input() viewEditModal: boolean = false;
   @Input() film!: Film;
   @Output() close = new EventEmitter();
+  @Output() filmChanged = new EventEmitter();
 
   editForm!: FormGroup;
   viewVerificationModal: boolean = false;
-  
 
   constructor(private fb: FormBuilder) {}
 
@@ -26,10 +26,16 @@ export class EditModalComponent implements OnInit {
 
   getFormValues() {
     this.editForm = this.fb.group({
-      title: [this.film?.title, [Validators.required, Validators.maxLength(20)]],
-      rating: [this.film.vote_average?.toFixed(1) , [Validators.required, Validators.min(0), Validators.max(10)]],
-      category: ["", Validators.required],
-      overview: [this.film?.overview, Validators.required]
+      title: [
+        this.film?.title,
+        [Validators.required, Validators.maxLength(35)],
+      ],
+      rating: [
+        this.film.vote_average?.toFixed(1),
+        [Validators.required, Validators.min(0), Validators.max(10)],
+      ],
+      category: ['', Validators.required],
+      overview: [this.film?.overview, Validators.required],
     });
   }
 
@@ -38,27 +44,34 @@ export class EditModalComponent implements OnInit {
     this.close.emit();
   }
 
-  onSubmit(): void{
+  onSubmit(): void {
     if (this.editForm.valid) {
-      // Aquí puedes manejar la lógica para enviar los datos del formulario
-      console.log("hello", this.editForm.value);
-      // Por ejemplo, puedes llamar a un servicio para guardar los datos
-      // this.productService.saveProduct(this.productForm.value);
-      //this.closeModal();
+      this.sendChanges();
+      this.closeModal();
     } else {
       // Marcar todos los campos como tocados para mostrar los errores de validación
-      console.log("wow");
+      console.log('wow');
       this.editForm.markAllAsTouched();
     }
   }
 
+  sendChanges() {
+    const filmEdited = {
+      title: this.editForm.get('title')?.value,
+      rating: this.editForm.get('rating')?.value,
+      overview: this.editForm.get('overview')?.value,
+    }
+    this.filmChanged.emit(filmEdited);
+    console.log("objeto: ", filmEdited);
+  }
+
   /* delete modal functions */
 
-  deleteFilm() {
-    this.viewVerificationModal = true; 
+  viewwDeleteFilm() {
+    this.viewVerificationModal = true;
   }
 
   closeDeleteModal() {
-    this.viewVerificationModal = false; 
+    this.viewVerificationModal = false;
   }
 }

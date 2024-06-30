@@ -110,6 +110,6 @@
 <div 
      *ngIf="viewModal"> <!-- *ngIf para mostrar/ocultar el modal -->
   <div class="bg-white p-4 rounded-md shadow-md">
-    <app-edit-modal [viewEditModal]="viewModal" [film]="film" (close)="closeEditModal()"></app-edit-modal>
+    <app-edit-modal [viewEditModal]="viewModal" [film]="film" (filmChanged)="getFilmEdited($event)" (close)="closeEditModal()"></app-edit-modal>
   </div>
 </div>
