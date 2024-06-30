@@ -39,8 +39,20 @@ export class EditModalComponent implements OnInit {
     this.close.emit();
   }
 
-  onSubmit() {
-
+  onSubmit(): void{
+    if (this.editForm.valid) {
+      // Aquí puedes manejar la lógica para enviar los datos del formulario
+      console.log("hello", this.editForm.value);
+      // Por ejemplo, puedes llamar a un servicio para guardar los datos
+      // this.productService.saveProduct(this.productForm.value);
+      //this.closeModal();
+    } else {
+      // Marcar todos los campos como tocados para mostrar los errores de validación
+      console.log("wow");
+      this.editForm.markAllAsTouched();
+    }
   }
-
+  deleteFilm() {
+    
+  }
 }
