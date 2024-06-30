@@ -26,8 +26,8 @@ export class EditModalComponent implements OnInit {
 
   getFormValues() {
     this.editForm = this.fb.group({
-      title: [this.film?.title, Validators.required],
-      rating: [this.film.vote_average?.toFixed(1) , Validators.required],
+      title: [this.film?.title, [Validators.required, Validators.maxLength(20)]],
+      rating: [this.film.vote_average?.toFixed(1) , [Validators.required, Validators.min(0), Validators.max(10)]],
       category: ["", Validators.required],
       overview: [this.film?.overview, Validators.required]
     });
