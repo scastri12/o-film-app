@@ -17,11 +17,6 @@ export class ListComponent implements OnInit {
     this.getFilmList();
   }
 
-  getId(event: string) {
-    console.log('estamos en el padre id: ', event);
-    console.log(event);
-  }
-
   getFilmList() {
     this.filmService.getFilms().subscribe(
       (response) => {

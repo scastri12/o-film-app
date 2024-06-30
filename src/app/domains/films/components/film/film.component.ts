@@ -19,9 +19,4 @@ export class FilmComponent implements OnInit {
     this.imagen += this.film.poster_path;
   }
 
-  goDetailHandler() {
-    console.log('click form child');
-    this.goDetail.emit(this.film.id);
-  }
-
 }
