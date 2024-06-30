@@ -7,7 +7,8 @@ import { FilmComponent } from './domains/films/components/film/film.component';
 import { ListComponent } from './domains/films/pages/list/list.component';
 import { FilmService } from './domains/films/services/film.service';
 import { HeaderComponent } from './domains/shared/components/header/header.component';
-import { FilmDetailComponent } from './domains/films/pages/film-detail/film-detail.component'
+import { FilmDetailComponent } from './domains/films/pages/film-detail/film-detail.component';
+import { EditModalComponent } from './domains/films/components/edit-modal/edit-modal.component'
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FilmDetailComponent } from './domains/films/pages/film-detail/film-deta
     FilmComponent,
     ListComponent,
     HeaderComponent,
-    FilmDetailComponent
+    FilmDetailComponent,
+    EditModalComponent
   ],
   imports: [
     BrowserModule,
