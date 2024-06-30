@@ -100,8 +100,16 @@
     </div>
     <button
       class="flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
+      (click)="openEditModal()"
     >
       Edit
     </button>
+  </div>
+</div>
+<!-- edit modal -->
+<div 
+     *ngIf="viewModal"> <!-- *ngIf para mostrar/ocultar el modal -->
+  <div class="bg-white p-4 rounded-md shadow-md">
+    <app-edit-modal [viewModal]="viewModal" [film]="film" (close)="closeEditModal()"></app-edit-modal>
   </div>
 </div>

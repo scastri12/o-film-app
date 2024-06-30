@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Film } from './../../../shared/models/film.model';
 
 @Component({
   selector: 'app-edit-modal',
@@ -7,6 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class EditModalComponent implements OnInit {
   @Input() viewModal: boolean = false;
+  @Input() film!: Film;
+  @Output() close = new EventEmitter();
 
   constructor() { }
 
@@ -15,9 +18,7 @@ export class EditModalComponent implements OnInit {
 
   closeModal() {
     this.viewModal = false;
-  }
-  openModal() {
-    this.viewModal = true;
+    this.close.emit();
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Film } from './../../../shared/models/film.model'
+//import { EditModalComponent } from './../../components/edit-modal/edit-modal.component'
 import { DetailFilmService } from './../../services/detail-film.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class FilmDetailComponent implements OnInit {
   id?: number;
   film!: Film;
   imagen: string = "https://image.tmdb.org/t/p/original";
+  viewModal: boolean = false;
   constructor(
     private readonly detailFilmService: DetailFilmService,
     private route: ActivatedRoute
@@ -44,5 +46,13 @@ export class FilmDetailComponent implements OnInit {
         console.error('Error fetching films', error);
       }
     );
+  }
+
+  openEditModal() {
+    this.viewModal = true;
+  }
+
+  closeEditModal() {
+    this.viewModal = false;
   }
 }
