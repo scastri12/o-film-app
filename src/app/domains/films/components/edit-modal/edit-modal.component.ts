@@ -8,16 +8,15 @@ import { Film } from './../../../shared/models/film.model';
   styleUrls: ['./edit-modal.component.css']
 })
 export class EditModalComponent implements OnInit {
-  @Input() viewModal: boolean = false;
+  @Input() viewEditModal: boolean = false;
   @Input() film!: Film;
   @Output() close = new EventEmitter();
 
   editForm!: FormGroup;
+  viewVerificationModal: boolean = false;
   
 
-  constructor(private fb: FormBuilder) {
-    
-  }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.getFormValues();
@@ -28,14 +27,14 @@ export class EditModalComponent implements OnInit {
   getFormValues() {
     this.editForm = this.fb.group({
       title: [this.film?.title, Validators.required],
-      rating: [this.film?.vote_average, Validators.required],
+      rating: [this.film.vote_average?.toFixed(1) , Validators.required],
       category: ["", Validators.required],
       overview: [this.film?.overview, Validators.required]
     });
   }
 
   closeModal() {
-    this.viewModal = false;
+    this.viewEditModal = false;
     this.close.emit();
   }
 
@@ -52,7 +51,14 @@ export class EditModalComponent implements OnInit {
       this.editForm.markAllAsTouched();
     }
   }
+
+  /* delete modal functions */
+
   deleteFilm() {
-    
+    this.viewVerificationModal = true; 
+  }
+
+  closeDeleteModal() {
+    this.viewVerificationModal = false; 
   }
 }
