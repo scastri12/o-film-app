@@ -50,8 +50,6 @@ export class EditModalComponent implements OnInit {
       this.sendChanges();
       this.closeModal();
     } else {
-      // Marcar todos los campos como tocados para mostrar los errores de validación
-      console.log('wow');
       this.editForm.markAllAsTouched();
     }
   }

@@ -11,6 +11,7 @@ import { Film } from './../../../shared/models/film.model';
 export class ListComponent implements OnInit {
   filmEdited?: any;
   filmDeleted?: any;
+  viewCreateModal: boolean = false;
 
   filmList: Film[] = [];
   constructor(
@@ -62,5 +63,12 @@ export class ListComponent implements OnInit {
     this.filmList = this.filmList.filter(film => film.id !== this.filmDeleted?.id);
     this.cdRef.detectChanges();
     console.log('este es mi list final del delete: ', this.filmList);
+  }
+
+  openCreateFilmModal() {
+    this.viewCreateModal = true;
+  }
+  closeCreateFilmModal() {
+    this.viewCreateModal = false;
   }
 }

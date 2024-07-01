@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   @Input() film?: any;
+  @Output() openAddFilmModal = new EventEmitter();
 
   constructor(private router: Router) { }
 
@@ -18,6 +19,10 @@ export class HeaderComponent implements OnInit {
   navigateToDetail(film: any): void {
     this.router.navigate(['/'], { state: { film } });
     console.log("el film del url", this.film);
+  }
+
+  sendOpenModal() {
+    this.openAddFilmModal.emit();
   }
 
 }
