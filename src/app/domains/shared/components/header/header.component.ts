@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   @Input() film?: any;
+  @Input() viewAddFilm!: boolean;
   @Output() openAddFilmModal = new EventEmitter();
 
   constructor(private router: Router) { }
