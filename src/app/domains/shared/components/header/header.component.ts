@@ -19,6 +19,14 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/'], { state: { film } });
   }
 
+  navigateToAbout(): void {
+    this.router.navigate(['/about']);
+  }
+
+  isActive(route: string): boolean {
+    return this.router.url === route;
+  }
+
   sendOpenModal() {
     this.openAddFilmModal.emit();
   }
