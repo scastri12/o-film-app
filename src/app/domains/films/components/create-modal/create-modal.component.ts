@@ -37,7 +37,7 @@ export class CreateModalComponent implements OnInit {
     const film = {
       id: rand,
       title: this.createForm.get('title')?.value,
-      rating: this.createForm.get('rating')?.value,
+      vote_average: this.createForm.get('rating')?.value,
       overview: this.createForm.get('overview')?.value,
       poster_path: 'http://picsum.photos/2000/3000?r=' + rand,
       created: true,
