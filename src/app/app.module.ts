@@ -9,7 +9,8 @@ import { ListComponent } from './domains/films/pages/list/list.component';
 import { FilmService } from './domains/films/services/film.service';
 import { HeaderComponent } from './domains/shared/components/header/header.component';
 import { FilmDetailComponent } from './domains/films/pages/film-detail/film-detail.component';
-import { EditModalComponent } from './domains/films/components/edit-modal/edit-modal.component'
+import { EditModalComponent } from './domains/films/components/edit-modal/edit-modal.component';
+import { CreateModalComponent } from './domains/films/components/create-modal/create-modal.component'
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { EditModalComponent } from './domains/films/components/edit-modal/edit-m
     ListComponent,
     HeaderComponent,
     FilmDetailComponent,
-    EditModalComponent
+    EditModalComponent,
+    CreateModalComponent
   ],
   imports: [
     BrowserModule,

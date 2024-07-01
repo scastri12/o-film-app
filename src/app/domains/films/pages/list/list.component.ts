@@ -42,7 +42,6 @@ export class ListComponent implements OnInit {
   updateFilm() {
     this.filmEdited = history.state.film;
     this.filmList = this.filmList.map((film) => {
-      console.log("id: ", film.id, this.filmEdited?.id);
       if (film.id === this.filmEdited?.id) {
         console.log("entro", this.filmEdited?.title);
         return {
@@ -60,7 +59,7 @@ export class ListComponent implements OnInit {
 
   deleteFilm() {
     this.filmDeleted = history.state.filmDeleted;
-    this.filmList = this.filmList.filter(film => film.id !== this.filmDeleted.id);
+    this.filmList = this.filmList.filter(film => film.id !== this.filmDeleted?.id);
     this.cdRef.detectChanges();
     console.log('este es mi list final del delete: ', this.filmList);
   }
