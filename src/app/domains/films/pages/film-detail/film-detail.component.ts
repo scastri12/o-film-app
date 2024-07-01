@@ -27,7 +27,6 @@ export class FilmDetailComponent implements OnInit {
     if (this.id) {
       this.getFilm(this.id);
     }
-    
   }
 
   getId() {
@@ -43,13 +42,16 @@ export class FilmDetailComponent implements OnInit {
         this.film = response;
         this.imagen += this.film?.poster_path;
         this.companiesList = this.film?.production_companies;
+        this.companiesList = this.companiesList.filter(
+          (company: any) => company.logo_path !== null
+        );
         this.companiesList = this.companiesList.map((company: any) => {
           return {
             ...company,
-            logo_path: this.imagenCompany + company.logo_path
-          }
+            logo_path: this.imagenCompany + company.logo_path,
+          };
         });
-        console.log(this.film)
+        console.log(this.film);
       },
       (error) => {
         console.error('Error fetching films', error);
