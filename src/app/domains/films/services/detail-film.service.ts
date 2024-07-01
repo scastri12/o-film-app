@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class DetailFilmService {
-  private url = 'http://api.themoviedb.org/3/movie/';
-  private apiKey = '?api_key=f63cfa4150be2e71d9ef0336c0d19212'
+  private url = 'https://api.themoviedb.org/3/movie/';
+  private apiKey = '?api_key=f63cfa4150be2e71d9ef0336c0d19212';
 
   constructor(private http: HttpClient) {}
 

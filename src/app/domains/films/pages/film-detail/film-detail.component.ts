@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Film } from './../../../shared/models/film.model'
+import { Film } from './../../../shared/models/film.model';
 //import { EditModalComponent } from './../../components/edit-modal/edit-modal.component'
 import { DetailFilmService } from './../../services/detail-film.service';
 
@@ -13,8 +13,10 @@ import { DetailFilmService } from './../../services/detail-film.service';
 export class FilmDetailComponent implements OnInit {
   id?: number;
   film!: Film;
-  imagen: string = "https://image.tmdb.org/t/p/original";
+  imagen: string = 'https://image.tmdb.org/t/p/original';
+  imagenCompany: string = 'https://image.tmdb.org/t/p/original';
   viewModal: boolean = false;
+  companiesList: any;
   constructor(
     private readonly detailFilmService: DetailFilmService,
     private route: ActivatedRoute
@@ -24,12 +26,11 @@ export class FilmDetailComponent implements OnInit {
     this.getId();
     if (this.id) {
       this.getFilm(this.id);
-      
     }
   }
 
   getId() {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       this.id = params['id'];
     });
   }
@@ -40,6 +41,17 @@ export class FilmDetailComponent implements OnInit {
       (response) => {
         this.film = response;
         this.imagen += this.film?.poster_path;
+        this.companiesList = this.film?.production_companies;
+        this.companiesList = this.companiesList.filter(
+          (company: any) => company.logo_path !== null
+        );
+        this.companiesList = this.companiesList.map((company: any) => {
+          return {
+            ...company,
+            logo_path: this.imagenCompany + company.logo_path,
+          };
+        });
+        console.log(this.film);
       },
       (error) => {
         console.error('Error fetching films', error);
