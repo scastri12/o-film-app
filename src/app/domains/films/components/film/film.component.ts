@@ -10,18 +10,19 @@ export class FilmComponent implements OnInit {
   @Input() film!: Film;
   @Output() goDetail = new EventEmitter();
 
-  imagen: string = "https://image.tmdb.org/t/p/original/";
+  imagen: any = "https://image.tmdb.org/t/p/original/";
+  imagenCargada: boolean = false;
 
 
   constructor() { }
 
   ngOnInit(): void {
-    this.imagen += this.film.poster_path;
-  }
-
-  goDetailHandler() {
-    console.log('click form child');
-    this.goDetail.emit(this.film.id);
+    if (this.film?.created) {
+      this.imagen = this.film?.poster_path;
+      
+    }else{
+      this.imagen += this.film?.poster_path;
+    }
   }
 
 }

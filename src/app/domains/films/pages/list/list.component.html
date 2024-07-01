@@ -1,10 +1,5 @@
-<div class="container px-20">
-  <app-header></app-header>
-  <div class="grid grid-cols-4 gap-8 mt-5">
-    <app-film
-      *ngFor="let film of filmList"
-      [film]="film"
-      (goDetail)="getId($event)"
-    ></app-film>
-  </div>
+<app-header (openAddFilmModal)="openCreateFilmModal()"></app-header>
+<div class="grid grid-cols-4 gap-8 mt-5">
+  <app-film *ngFor="let film of filmList" [film]="film"></app-film>
 </div>
+<app-create-modal [viewCreateModal]="viewCreateModal" (close)="closeCreateFilmModal()" (createdFilm)="getCreatedFilm($event)"></app-create-modal>

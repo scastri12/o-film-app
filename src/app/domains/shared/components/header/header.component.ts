@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  @Input() film?: any;
+  @Output() openAddFilmModal = new EventEmitter();
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  navigateToDetail(film: any): void {
+    this.router.navigate(['/'], { state: { film } });
+  }
+
+  sendOpenModal() {
+    this.openAddFilmModal.emit();
   }
 
 }
