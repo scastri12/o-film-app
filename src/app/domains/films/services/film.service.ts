@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class FilmService {
   private popularFilmsUrl =
-    'http://api.themoviedb.org/3/movie/popular?api_key=f63cfa4150be2e71d9ef0336c0d19212';
+    'https://api.themoviedb.org/3/movie/popular?api_key=f63cfa4150be2e71d9ef0336c0d19212';
 
   constructor(private http: HttpClient) {}
 
