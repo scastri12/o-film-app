@@ -1,17 +1,18 @@
 export interface Film {
-    adult: boolean; 
-    backdrop_path: string; 
     id: number;
-    original_language: string;
-    original_title: string;
-    overview: string;
-    popularity: string;
-    poster_path: string;
-    release_date: string;
     title: string;
-    video: boolean;
     vote_average: number;
-    vote_count: number;
+    overview: string;
+    created?: boolean;
+    adult?: boolean; 
+    backdrop_path?: string;  
+    original_language?: string;
+    original_title?: string;
+    popularity?: string;
+    poster_path?: string;
+    release_date?: string;
+    video?: boolean;
+    vote_count?: number;
     belongs_to_collection?: {}; 
     budget?: number; 
     genres?: {}; 
