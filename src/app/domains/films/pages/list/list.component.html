@@ -1,5 +1,5 @@
 <app-header (openAddFilmModal)="openCreateFilmModal()"></app-header>
-<div class="grid grid-cols-4 gap-8 mt-5">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-5">
   <app-film *ngFor="let film of filmList" [film]="film"></app-film>
 </div>
 <app-create-modal [viewCreateModal]="viewCreateModal" (close)="closeCreateFilmModal()" (createdFilm)="getCreatedFilm($event)"></app-create-modal>
