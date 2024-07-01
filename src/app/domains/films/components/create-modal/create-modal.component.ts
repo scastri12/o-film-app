@@ -32,9 +32,10 @@ export class CreateModalComponent implements OnInit {
   }
 
   sendChanges() {
-    let rand: any = Math.floor(Math.random() * 90) + 10;
+    let rand: any = Math.floor(Math.random() * 900) + 1;
     rand = rand.toString();
     const film = {
+      id: rand,
       title: this.createForm.get('title')?.value,
       rating: this.createForm.get('rating')?.value,
       overview: this.createForm.get('overview')?.value,
