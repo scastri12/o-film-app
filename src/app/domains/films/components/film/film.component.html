@@ -3,11 +3,22 @@
     [routerLink]="['/detail', film.id]"
     class="w-full overflow-hidden rounded-t-lg bg-gray-200"
   >
+  <div *ngIf="!imagenCargada; else loaded" class="relative h-72 bg-gray-300">
+    <img
+      [src]="imagen"
+      [alt]="film.title"
+      class="h-full w-full object-cover object-center absolute inset-0 transition-opacity duration-300 opacity-0" 
+      (load)="imagenCargada = true" 
+    />
+  </div>
+  <ng-template #loaded>
     <img
       [src]="imagen"
       [alt]="film.title"
       class="h-full w-full object-cover object-center group-hover:opacity-75"
+      (load)="imagenCargada = true" 
     />
+   </ng-template>
   </a>
   <div class="flex flex-col space-y-2 p-4">
     <p class="text-lg font-medium text-gray-700">{{ film.title }}</p>

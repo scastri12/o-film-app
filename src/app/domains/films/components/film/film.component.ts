@@ -11,6 +11,7 @@ export class FilmComponent implements OnInit {
   @Output() goDetail = new EventEmitter();
 
   imagen: any = "https://image.tmdb.org/t/p/original/";
+  imagenCargada: boolean = false;
 
 
   constructor() { }
