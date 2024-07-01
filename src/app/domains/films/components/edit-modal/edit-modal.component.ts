@@ -21,8 +21,6 @@ export class EditModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFormValues();
-    //console.log("film en edit: ", this.film);
-    //console.log("editForm ", this.editForm);
   }
 
   getFormValues() {
@@ -61,7 +59,6 @@ export class EditModalComponent implements OnInit {
       overview: this.editForm.get('overview')?.value,
     };
     this.filmChanged.emit(filmEdited);
-    console.log('objeto: ', filmEdited);
   }
 
   navigateToDetail(film: any): void {

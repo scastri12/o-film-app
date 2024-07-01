@@ -39,7 +39,6 @@ export class FilmDetailComponent implements OnInit {
     this.detailFilmService.getDetail(idString).subscribe(
       (response) => {
         this.film = response;
-        console.log(this.film);
         this.imagen += this.film?.poster_path;
       },
       (error) => {
@@ -57,7 +56,6 @@ export class FilmDetailComponent implements OnInit {
   }
 
   getFilmEdited(event: any) {
-    console.log("este es el evento: ", event);
     this.updateFilm(event);
   }
 

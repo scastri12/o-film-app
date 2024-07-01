@@ -23,7 +23,6 @@ export class FilmComponent implements OnInit {
     }else{
       this.imagen += this.film?.poster_path;
     }
-    console.log("imagen", this.imagen);
   }
 
 }

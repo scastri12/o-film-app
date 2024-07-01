@@ -52,7 +52,6 @@ export class CreateModalComponent implements OnInit {
       created: true
     };
     this.createdFilm.emit(film);
-    console.log('objeto creado: ', film);
   }
 
   closeModal() {

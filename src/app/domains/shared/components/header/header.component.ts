@@ -18,7 +18,6 @@ export class HeaderComponent implements OnInit {
 
   navigateToDetail(film: any): void {
     this.router.navigate(['/'], { state: { film } });
-    console.log("el film del url", this.film);
   }
 
   sendOpenModal() {

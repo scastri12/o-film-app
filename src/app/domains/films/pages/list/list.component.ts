@@ -22,15 +22,12 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFilmList();
-
-    console.log('la pelicula editada llego a la lista: ', history.state.film);
   }
 
   getFilmList() {
     this.filmService.getFilms().subscribe(
       (response) => {
         this.filmList = response.results;
-        console.log('response: ', this.filmList);
         this.updateFilm();
         this.deleteFilm();
       },
@@ -44,7 +41,6 @@ export class ListComponent implements OnInit {
     this.filmEdited = history.state.film;
     this.filmList = this.filmList.map((film) => {
       if (film.id === this.filmEdited?.id) {
-        console.log("entro", this.filmEdited?.title);
         return {
           ...film,
           title: this.filmEdited?.title,
@@ -55,18 +51,15 @@ export class ListComponent implements OnInit {
       return film;
     });
     this.cdRef.detectChanges();
-    console.log('este es mi list final: ', this.filmList);
   }
 
   deleteFilm() {
     this.filmDeleted = history.state.filmDeleted;
     this.filmList = this.filmList.filter(film => film.id !== this.filmDeleted?.id);
     this.cdRef.detectChanges();
-    console.log('este es mi list final del delete: ', this.filmList);
   }
 
   getCreatedFilm(event: Film) {
-    console.log("llego creado al padre", event);
     this.filmList.unshift(event);
     this.cdRef.detectChanges();
 
