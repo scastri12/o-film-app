@@ -16,6 +16,10 @@ const routes: Routes = [
     path: 'edit',
     component: EditModalComponent,
   },
+  {
+    path: 'about-us',
+    component: EditModalComponent,
+  },
 ];
 
 @NgModule({

@@ -10,7 +10,8 @@ import { FilmService } from './domains/films/services/film.service';
 import { HeaderComponent } from './domains/shared/components/header/header.component';
 import { FilmDetailComponent } from './domains/films/pages/film-detail/film-detail.component';
 import { EditModalComponent } from './domains/films/components/edit-modal/edit-modal.component';
-import { CreateModalComponent } from './domains/films/components/create-modal/create-modal.component'
+import { CreateModalComponent } from './domains/films/components/create-modal/create-modal.component';
+import { AboutUsComponent } from './domains/shared/components/about-us/about-us.component'
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CreateModalComponent } from './domains/films/components/create-modal/cr
     HeaderComponent,
     FilmDetailComponent,
     EditModalComponent,
-    CreateModalComponent
+    CreateModalComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,
