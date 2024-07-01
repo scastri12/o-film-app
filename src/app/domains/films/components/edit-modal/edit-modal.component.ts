@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Film } from './../../../shared/models/film.model';
 
 @Component({
@@ -16,7 +17,7 @@ export class EditModalComponent implements OnInit {
   editForm!: FormGroup;
   viewVerificationModal: boolean = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     this.getFormValues();
@@ -60,9 +61,18 @@ export class EditModalComponent implements OnInit {
       title: this.editForm.get('title')?.value,
       rating: this.editForm.get('rating')?.value,
       overview: this.editForm.get('overview')?.value,
-    }
+    };
     this.filmChanged.emit(filmEdited);
-    console.log("objeto: ", filmEdited);
+    console.log('objeto: ', filmEdited);
+  }
+
+  navigateToDetail(film: any): void {
+    const filmDeleted = {
+      id: film.id,
+      isDeleted: true
+    }
+
+    this.router.navigate(['/'], { state: { filmDeleted } });
   }
 
   /* delete modal functions */

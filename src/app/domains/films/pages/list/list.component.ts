@@ -10,6 +10,7 @@ import { Film } from './../../../shared/models/film.model';
 })
 export class ListComponent implements OnInit {
   filmEdited?: any;
+  filmDeleted?: any;
 
   filmList: Film[] = [];
   constructor(
@@ -30,6 +31,7 @@ export class ListComponent implements OnInit {
         this.filmList = response.results;
         console.log('response: ', this.filmList);
         this.updateFilm();
+        this.deleteFilm();
       },
       (error) => {
         console.error('Error fetching films', error);
@@ -54,5 +56,12 @@ export class ListComponent implements OnInit {
     });
     this.cdRef.detectChanges();
     console.log('este es mi list final: ', this.filmList);
+  }
+
+  deleteFilm() {
+    this.filmDeleted = history.state.filmDeleted;
+    this.filmList = this.filmList.filter(film => film.id !== this.filmDeleted.id);
+    this.cdRef.detectChanges();
+    console.log('este es mi list final del delete: ', this.filmList);
   }
 }
