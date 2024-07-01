@@ -64,8 +64,8 @@ export class EditModalComponent implements OnInit {
   navigateToDetail(film: any): void {
     const filmDeleted = {
       id: film.id,
-      isDeleted: true
-    }
+      isDeleted: true,
+    };
 
     this.router.navigate(['/'], { state: { filmDeleted } });
   }

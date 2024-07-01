@@ -55,14 +55,15 @@ export class ListComponent implements OnInit {
 
   deleteFilm() {
     this.filmDeleted = history.state.filmDeleted;
-    this.filmList = this.filmList.filter(film => film.id !== this.filmDeleted?.id);
+    this.filmList = this.filmList.filter(
+      (film) => film.id !== this.filmDeleted?.id
+    );
     this.cdRef.detectChanges();
   }
 
   getCreatedFilm(event: Film) {
     this.filmList.unshift(event);
     this.cdRef.detectChanges();
-
   }
 
   openCreateFilmModal() {
