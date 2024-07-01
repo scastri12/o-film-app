@@ -10,13 +10,19 @@ export class FilmComponent implements OnInit {
   @Input() film!: Film;
   @Output() goDetail = new EventEmitter();
 
-  imagen: string = "https://image.tmdb.org/t/p/original/";
+  imagen: any = "https://image.tmdb.org/t/p/original/";
 
 
   constructor() { }
 
   ngOnInit(): void {
-    this.imagen += this.film.poster_path;
+    if (this.film?.created) {
+      this.imagen = this.film?.poster_path;
+      
+    }else{
+      this.imagen += this.film?.poster_path;
+    }
+    console.log("imagen", this.imagen);
   }
 
 }

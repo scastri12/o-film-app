@@ -3,6 +3,7 @@ export interface Film {
     title: string;
     vote_average: number;
     overview: string;
+    created?: boolean;
     adult?: boolean; 
     backdrop_path?: string;  
     original_language?: string;

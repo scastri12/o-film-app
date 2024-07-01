@@ -9,6 +9,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CreateModalComponent implements OnInit {
   @Input() viewCreateModal: boolean = false;
   @Output() close = new EventEmitter();
+  @Output() createdFilm = new EventEmitter();
+
 
   createForm: FormGroup = this.fb.group({
     title: [
@@ -31,7 +33,7 @@ export class CreateModalComponent implements OnInit {
 
   onSubmit(): void {
     if (this.createForm.valid) {
-      //this.sendChanges();
+      this.sendChanges();
       this.closeModal();
     } else {
       // Marcar todos los campos como tocados para mostrar los errores de validación
@@ -39,8 +41,23 @@ export class CreateModalComponent implements OnInit {
     }
   }
 
+  sendChanges() {
+    let rand: any = Math.floor(Math.random() * 90) + 10;
+    rand = rand.toString();
+    const film = {
+      title: this.createForm.get('title')?.value,
+      rating: this.createForm.get('rating')?.value,
+      overview: this.createForm.get('overview')?.value,
+      poster_path: "http://picsum.photos/2000/3000?r=" + rand,
+      created: true
+    };
+    this.createdFilm.emit(film);
+    console.log('objeto creado: ', film);
+  }
+
   closeModal() {
     this.viewCreateModal = false;
+    this.createForm.reset();
     this.close.emit();
   }
 

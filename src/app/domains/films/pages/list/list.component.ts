@@ -65,6 +65,13 @@ export class ListComponent implements OnInit {
     console.log('este es mi list final del delete: ', this.filmList);
   }
 
+  getCreatedFilm(event: Film) {
+    console.log("llego creado al padre", event);
+    this.filmList.unshift(event);
+    this.cdRef.detectChanges();
+
+  }
+
   openCreateFilmModal() {
     this.viewCreateModal = true;
   }
