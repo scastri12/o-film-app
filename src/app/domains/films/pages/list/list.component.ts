@@ -39,16 +39,15 @@ export class ListComponent implements OnInit {
 
   updateList() {
     this.filmEdited = history.state.film;
-    
-    let exist = this.filmList.find(film => film.id === this.filmEdited.id);
-    if (exist) {
-      this.updateFilm()
-    } else {
-      this.getCreatedFilm(this.filmEdited);
+    if (this.filmEdited?.id) {
+      let exist = this.filmList.find((film) => film.id === this.filmEdited.id);
+      if (exist) {
+        this.updateFilm();
+      } else {
+        this.getCreatedFilm(this.filmEdited);
+      }
+      this.cdRef.detectChanges();
     }
-
-    
-    this.cdRef.detectChanges();
   }
 
   updateFilm() {
