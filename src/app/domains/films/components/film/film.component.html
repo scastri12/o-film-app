@@ -1,5 +1,5 @@
 <div class="group rounded-lg border max-w-xs mx-auto">
-    <a [routerLink]="['/detail', film.id]" class="w-full overflow-hidden rounded-t-lg bg-gray-200">
+    <a (click)="navigateToDetail(film)" class="w-full overflow-hidden rounded-t-lg bg-gray-200">
       <div *ngIf="!imagenCargada; else loaded" class="relative h-64 bg-gray-300">
         <img
           [src]="imagen"
@@ -85,7 +85,7 @@
         </div>
       </div>
       <h3 class="text-sm text-gray-900">{{ film.release_date }}</h3>
-      <button [routerLink]="['/detail', film.id]" class="text-black bg-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 w-full">
+      <button  (click)="navigateToDetail(film)" class="text-black bg-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 w-full">
         See more
       </button>
     </div>

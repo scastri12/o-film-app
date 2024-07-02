@@ -30,9 +30,7 @@ export class FilmDetailComponent implements OnInit {
   }
 
   getId() {
-    this.route.params.subscribe((params) => {
-      this.id = params['id'];
-    });
+    this.id = history.state.film.id;
   }
 
   getFilm(id: number) {
