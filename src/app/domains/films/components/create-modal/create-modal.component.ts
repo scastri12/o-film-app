@@ -12,7 +12,7 @@ export class CreateModalComponent implements OnInit {
   @Output() createdFilm = new EventEmitter();
 
   createForm: FormGroup = this.fb.group({
-    title: ['', [Validators.required, Validators.maxLength(35)]],
+    title: ['', [Validators.required, Validators.maxLength(50)]],
     rating: ['', [Validators.required, Validators.min(0), Validators.max(10)]],
     category: ['', Validators.required],
     overview: ['', Validators.required],

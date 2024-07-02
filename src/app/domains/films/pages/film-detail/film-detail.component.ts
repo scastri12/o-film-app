@@ -11,8 +11,9 @@ import { DetailFilmService } from './../../services/detail-film.service';
   styleUrls: ['./film-detail.component.css'],
 })
 export class FilmDetailComponent implements OnInit {
-  id?: number;
+  id?: any;
   film!: Film;
+  genres: any;
   isCreated: boolean = false;
   imagen: any = 'https://image.tmdb.org/t/p/original';
   imagenCompany: string = 'https://image.tmdb.org/t/p/original';
@@ -27,23 +28,31 @@ export class FilmDetailComponent implements OnInit {
     this.getId();
     if (this.id) {
       this.getFilm(this.id);
+    }else {
+      this.route.params.subscribe((params) => {
+        this.id = params['id'];
+        this.getFilm(this.id);
+      });
+      
     }
   }
 
   getId() {
-    this.id = history.state.film.id;
+    this.id = history.state.film?.id;
   }
 
   getFilm(id: number) {
-    if (history.state.film.created === true) {
+    if (history.state.film?.created === true) {
       this.film = history.state.film;
       this.imagen = this.film.poster_path;
+      this.genres = this.film?.genres;
       console.log('llegueee:', this.film);
     } else {
       const idString = id.toString();
       this.detailFilmService.getDetail(idString).subscribe(
         (response) => {
           this.film = response;
+          this.genres = this.film.genres;
           this.imagen += this.film?.poster_path;
           this.companiesList = this.film?.production_companies;
           this.companiesList = this.companiesList.filter(
@@ -80,5 +89,10 @@ export class FilmDetailComponent implements OnInit {
     this.film.title = film.title;
     this.film.vote_average = Number(film.rating);
     this.film.overview = film.overview;
+  }
+
+  deleteCategory(index: any) {
+    //const index = this.genres.findIndex(genre => company.id === id);
+    this.genres.splice(index, 1);   
   }
 }

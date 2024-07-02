@@ -33,7 +33,8 @@ export class EditModalComponent implements OnInit {
         this.film.vote_average?.toFixed(1),
         [Validators.required, Validators.min(0), Validators.max(10)],
       ],
-      category: ['', Validators.required],
+      category: [this.film?.genres, Validators.required],
+      releaseDate: [this.film?.release_date, Validators.required],
       overview: [this.film?.overview, Validators.required],
     });
   }
@@ -44,6 +45,7 @@ export class EditModalComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log("form: ", this.editForm);
     if (this.editForm.valid) {
       this.sendChanges();
       this.closeModal();
