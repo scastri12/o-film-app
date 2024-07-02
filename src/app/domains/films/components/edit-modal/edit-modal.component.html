@@ -108,7 +108,7 @@
             </div>
           </div>
           <!-- CATEGORY -->
-          <div class="col-span-2 sm:col-span-1">
+          <!-- <div class="col-span-2 sm:col-span-1">
             <label
               for="category"
               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -135,7 +135,55 @@
             >
               Category is required
             </div>
+          </div> -->
+
+          <!-- RELEASE DATE -->
+
+          <div class="col-span-2 sm:col-span-1">
+            <label
+              for="releaseDate"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Release date</label
+            >
+            <div class="relative max-w-sm">
+              <div
+                class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+              >
+                <svg
+                  class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+                  />
+                </svg>
+              </div>
+              <input
+                datepicker
+                id="releaseDate"
+                type="date"
+                formControlName="releaseDate"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Select date"
+                required
+              />
+            </div>
+
+            <div
+              *ngIf="
+                editForm.get('releaseDate')?.invalid &&
+                (editForm.get('releaseDate')?.dirty ||
+                  editForm.get('releaseDate')?.touched)
+              "
+              class="text-sm text-red-600 mt-1"
+            >
+              Release date is required
+            </div>
           </div>
+
           <!-- OVERVIEW -->
           <div class="col-span-2">
             <label

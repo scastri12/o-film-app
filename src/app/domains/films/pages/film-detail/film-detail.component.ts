@@ -13,6 +13,7 @@ import { DetailFilmService } from './../../services/detail-film.service';
 export class FilmDetailComponent implements OnInit {
   id?: any;
   film!: Film;
+  genres: any;
   isCreated: boolean = false;
   imagen: any = 'https://image.tmdb.org/t/p/original';
   imagenCompany: string = 'https://image.tmdb.org/t/p/original';
@@ -44,12 +45,14 @@ export class FilmDetailComponent implements OnInit {
     if (history.state.film?.created === true) {
       this.film = history.state.film;
       this.imagen = this.film.poster_path;
+      this.genres = this.film?.genres;
       console.log('llegueee:', this.film);
     } else {
       const idString = id.toString();
       this.detailFilmService.getDetail(idString).subscribe(
         (response) => {
           this.film = response;
+          this.genres = this.film.genres;
           this.imagen += this.film?.poster_path;
           this.companiesList = this.film?.production_companies;
           this.companiesList = this.companiesList.filter(
