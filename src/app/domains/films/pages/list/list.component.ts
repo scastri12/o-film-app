@@ -12,8 +12,10 @@ export class ListComponent implements OnInit {
   filmEdited?: any;
   filmDeleted?: any;
   viewCreateModal: boolean = false;
+  persistent: boolean = false;
 
   filmList: Film[] = [];
+  auxFilmList: Film[] = [];
   constructor(
     private readonly filmService: FilmService,
     private route: ActivatedRoute,
@@ -27,9 +29,16 @@ export class ListComponent implements OnInit {
   getFilmList() {
     this.filmService.getFilms().subscribe(
       (response) => {
-        this.filmList = response.results;
         this.updateList();
         this.deleteFilm();
+        console.log('persistent: ', this.persistent);
+        if (this.persistent === false) {
+          console.log('LLEGUEEEEEEEEE: ', this.persistent);
+          this.filmList = response.results;
+        }else {
+          this.auxFilmList = response.results;
+          
+        }
       },
       (error) => {
         console.error('Error fetching films', error);
@@ -39,16 +48,16 @@ export class ListComponent implements OnInit {
 
   updateList() {
     this.filmEdited = history.state.film;
-    
-    let exist = this.filmList.find(film => film.id === this.filmEdited.id);
-    if (exist) {
-      this.updateFilm()
-    } else {
-      this.getCreatedFilm(this.filmEdited);
+    console.log('this.filmEdited: ', this.filmEdited);
+    if (this.filmEdited) {
+      let exist = this.filmList.find((film) => film.id === this.filmEdited.id);
+      if (exist) {
+        this.updateFilm();
+      } else {
+        this.getCreatedFilm(this.filmEdited);
+      }
+      this.cdRef.detectChanges();
     }
-
-    
-    this.cdRef.detectChanges();
   }
 
   updateFilm() {
@@ -63,18 +72,23 @@ export class ListComponent implements OnInit {
       }
       return film;
     });
+    this.persistent = true;
   }
 
   deleteFilm() {
     this.filmDeleted = history.state.filmDeleted;
-    this.filmList = this.filmList.filter(
-      (film) => film.id !== this.filmDeleted?.id
-    );
-    this.cdRef.detectChanges();
+    if (this.filmDeleted) {
+      this.filmList = this.filmList.filter(
+        (film) => film.id !== this.filmDeleted?.id
+      );
+      this.persistent = true;
+      this.cdRef.detectChanges();
+    }
   }
 
   getCreatedFilm(event: Film) {
     this.filmList.unshift(event);
+    this.persistent = true;
     this.cdRef.detectChanges();
   }
 
