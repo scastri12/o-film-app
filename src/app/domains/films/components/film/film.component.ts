@@ -24,6 +24,6 @@ export class FilmComponent implements OnInit {
   }
 
   navigateToDetail(film: any): void {    
-    this.router.navigate(['/detail'], { state: { film } });
+    this.router.navigate(['/detail/'+ film.id], { state: { film } });
   }
 }

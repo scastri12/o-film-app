@@ -11,7 +11,7 @@ import { DetailFilmService } from './../../services/detail-film.service';
   styleUrls: ['./film-detail.component.css'],
 })
 export class FilmDetailComponent implements OnInit {
-  id?: number;
+  id?: any;
   film!: Film;
   isCreated: boolean = false;
   imagen: any = 'https://image.tmdb.org/t/p/original';
@@ -27,15 +27,21 @@ export class FilmDetailComponent implements OnInit {
     this.getId();
     if (this.id) {
       this.getFilm(this.id);
+    }else {
+      this.route.params.subscribe((params) => {
+        this.id = params['id'];
+        this.getFilm(this.id);
+      });
+      
     }
   }
 
   getId() {
-    this.id = history.state.film.id;
+    this.id = history.state.film?.id;
   }
 
   getFilm(id: number) {
-    if (history.state.film.created === true) {
+    if (history.state.film?.created === true) {
       this.film = history.state.film;
       this.imagen = this.film.poster_path;
       console.log('llegueee:', this.film);
