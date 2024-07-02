@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { FilmComponent } from './domains/films/components/film/film.component';
 import { ListComponent } from './domains/films/pages/list/list.component';
@@ -28,7 +28,8 @@ import { AboutUsComponent } from './domains/shared/components/about-us/about-us.
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [FilmService],
   bootstrap: [AppComponent]

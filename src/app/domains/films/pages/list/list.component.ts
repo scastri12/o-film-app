@@ -12,6 +12,8 @@ export class ListComponent implements OnInit {
   filmEdited?: any;
   filmDeleted?: any;
   viewCreateModal: boolean = false;
+  searchTerm: string = '';
+  filteredMovies: Film[] = [] ;
 
   filmList: Film[] = [];
   constructor(
@@ -82,5 +84,19 @@ export class ListComponent implements OnInit {
   }
   closeCreateFilmModal() {
     this.viewCreateModal = false;
+  }
+
+  getSearchTerm(title: string) {
+    this.searchTerm = title;
+    this.filterMovies();
+  }
+
+  filterMovies() {
+    this.filteredMovies = this.filmList.filter(film =>
+      film.title.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+    console.log("mi lista filtrada: ", this.filteredMovies);
+    this.filmList = this.filteredMovies;
+    this.cdRef.detectChanges();
   }
 }

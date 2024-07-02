@@ -10,6 +10,10 @@ export class HeaderComponent implements OnInit {
   @Input() film?: any;
   @Input() viewAddFilm!: boolean;
   @Output() openAddFilmModal = new EventEmitter();
+  @Output() searchTerm = new EventEmitter();
+  title: any = '';
+
+  
 
   constructor(private router: Router) {}
 
@@ -29,5 +33,11 @@ export class HeaderComponent implements OnInit {
 
   sendOpenModal() {
     this.openAddFilmModal.emit();
+  }
+
+  sendSearchTerm() {
+    this.searchTerm.emit(this.title);
+    console.log("this.title: ", this.title);
+
   }
 }
