@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Film } from './../../../shared/models/film.model';
 @Component({
   selector: 'app-film',
@@ -12,7 +13,7 @@ export class FilmComponent implements OnInit {
   imagen: any = 'https://image.tmdb.org/t/p/original/';
   imagenCargada: boolean = false;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     if (this.film?.created) {
@@ -20,5 +21,9 @@ export class FilmComponent implements OnInit {
     } else {
       this.imagen += this.film?.poster_path;
     }
+  }
+
+  navigateToDetail(film: any): void {    
+    this.router.navigate(['/detail'], { state: { film } });
   }
 }
