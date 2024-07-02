@@ -27,13 +27,13 @@ export class EditModalComponent implements OnInit {
     this.editForm = this.fb.group({
       title: [
         this.film?.title,
-        [Validators.required, Validators.maxLength(35)],
+        [Validators.required, Validators.maxLength(50)],
       ],
       rating: [
         this.film.vote_average?.toFixed(1),
         [Validators.required, Validators.min(0), Validators.max(10)],
       ],
-      category: [this.film?.genres, Validators.required],
+      category: [this.film?.genres],
       releaseDate: [this.film?.release_date, Validators.required],
       overview: [this.film?.overview, Validators.required],
     });

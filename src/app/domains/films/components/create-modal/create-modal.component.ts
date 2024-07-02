@@ -14,7 +14,7 @@ export class CreateModalComponent implements OnInit {
   createForm: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.maxLength(50)]],
     rating: ['', [Validators.required, Validators.min(0), Validators.max(10)]],
-    category: ['', Validators.required],
+    releaseDate: ['', Validators.required],
     overview: ['', Validators.required],
   });
 
@@ -40,6 +40,7 @@ export class CreateModalComponent implements OnInit {
       original_title: this.createForm.get('title')?.value,
       vote_average: this.createForm.get('rating')?.value,
       overview: this.createForm.get('overview')?.value,
+      release_date: this.createForm.get('releaseDate')?.value,
       poster_path: 'http://picsum.photos/2000/3000?r=' + rand,
       created: true,
     };
