@@ -28,7 +28,7 @@ export class ListComponent implements OnInit {
     this.filmService.getFilms().subscribe(
       (response) => {
         this.filmList = response.results;
-        this.updateFilm();
+        this.updateList();
         this.deleteFilm();
       },
       (error) => {
@@ -37,8 +37,21 @@ export class ListComponent implements OnInit {
     );
   }
 
-  updateFilm() {
+  updateList() {
     this.filmEdited = history.state.film;
+    
+    let exist = this.filmList.find(film => film.id === this.filmEdited.id);
+    if (exist) {
+      this.updateFilm()
+    } else {
+      this.getCreatedFilm(this.filmEdited);
+    }
+
+    
+    this.cdRef.detectChanges();
+  }
+
+  updateFilm() {
     this.filmList = this.filmList.map((film) => {
       if (film.id === this.filmEdited?.id) {
         return {
@@ -50,7 +63,6 @@ export class ListComponent implements OnInit {
       }
       return film;
     });
-    this.cdRef.detectChanges();
   }
 
   deleteFilm() {
