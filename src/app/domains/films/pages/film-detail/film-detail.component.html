@@ -126,7 +126,7 @@
         class="flex flex-wrap items-center justify-start mt-1 space-x-1 md:space-x-2 mb-1"
       >
       <div
-        *ngFor="let genre of genres"
+        *ngFor="let genre of genres; index as i"
         class="flex-none w-30 h-8"
       >
         <span
@@ -139,6 +139,7 @@
             class="inline-flex items-center p-1 ms-2 text-sm text-gray-400 bg-transparent rounded-sm hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-gray-300"
             data-dismiss-target="#badge-dismiss-dark"
             aria-label="Remove"
+            (click)="deleteCategory(i)"
           >
             <svg
               class="w-2 h-2"

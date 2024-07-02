@@ -90,4 +90,9 @@ export class FilmDetailComponent implements OnInit {
     this.film.vote_average = Number(film.rating);
     this.film.overview = film.overview;
   }
+
+  deleteCategory(index: any) {
+    //const index = this.genres.findIndex(genre => company.id === id);
+    this.genres.splice(index, 1);   
+  }
 }
